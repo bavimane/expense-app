@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { registerAuthentication } from "../actions/authenticatonActions";
 
@@ -43,35 +43,46 @@ const UserRegister = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="register-section">
+      <Form onSubmit={handleSubmit}>
         <h1>User Register</h1>
-        <label htmlFor="name">Name : </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={handleNameChange}
-        />{" "}
-        <br />
-        <label htmlFor="email">Email : </label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <br />
-        <label htmlFor="passwd">Password : </label>
-        <input
-          type="text"
-          id="passwd"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <br />
-        <input type="submit" />
-      </form>
+
+        <Form.Group className="mb-3" controlId="name.id">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="enter your name"
+            value={name}
+            onChange={handleNameChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="email.id">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="enter your email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="password.id">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="enter your password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </Form.Group>
+        <p>
+          Already have an account ? <Link to="/login">Sign in</Link>
+        </p>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 };

@@ -1,5 +1,13 @@
 import React from "react";
+import Header from "./Header";
 
-export default function Settings() {
-  return <div>Settings</div>;
-}
+const Settings = () => {
+  return (
+    <div>
+      <Header />
+      <h3>Settings</h3>
+    </div>
+  );
+};
+
+export default Settings;

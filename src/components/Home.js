@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import Header from "./Header";
+
 const Home = () => {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
@@ -12,17 +14,11 @@ const Home = () => {
     }
   }, [navigate, user]);
 
-  const handleClick = () => {
-    localStorage.removeItem("user");
-    alert("successfully Logged Out");
-    navigate("/login");
-  };
-
   return (
-    <div>
+    <>
+      <Header />
       <h3>Home</h3>
-      <button onClick={handleClick}>logout</button>
-    </div>
+    </>
   );
 };
 
