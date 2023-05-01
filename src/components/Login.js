@@ -41,12 +41,13 @@ const Login = () => {
       <h1>User Login</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="email.id">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
+            required
           />
         </Form.Group>
 
@@ -57,13 +58,14 @@ const Login = () => {
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
+            required
           />
         </Form.Group>
         <p>
           Do not have account? Click <Link to="/register">here</Link>
         </p>
         <Button variant="primary" type="submit">
-          Submit
+          Login
         </Button>
       </Form>
     </div>

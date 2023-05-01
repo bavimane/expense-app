@@ -1,12 +1,17 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+
 import Header from "./Header";
 
 const Settings = () => {
   return (
-    <div>
+    <>
       <Header />
-      <h3>Settings</h3>
-    </div>
+
+      <Container>
+        <h3>Settings</h3>
+      </Container>
+    </>
   );
 };
 

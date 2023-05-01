@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Container from "react-bootstrap/Container";
 
 import Header from "./Header";
 
@@ -17,7 +18,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <h3>Home</h3>
+
+      <Container>
+        <h3>Home</h3>
+      </Container>
     </>
   );
 };

@@ -54,6 +54,7 @@ const UserRegister = () => {
             placeholder="enter your name"
             value={name}
             onChange={handleNameChange}
+            required
           />
         </Form.Group>
 
@@ -64,6 +65,7 @@ const UserRegister = () => {
             placeholder="enter your email"
             value={email}
             onChange={handleEmailChange}
+            required
           />
         </Form.Group>
 
@@ -74,13 +76,14 @@ const UserRegister = () => {
             placeholder="enter your password"
             value={password}
             onChange={handlePasswordChange}
+            required
           />
         </Form.Group>
         <p>
-          Already have an account ? <Link to="/login">Sign in</Link>
+          Already have an account? Click <Link to="/login">here</Link>
         </p>
         <Button variant="primary" type="submit">
-          Submit
+          Register
         </Button>
       </Form>
     </div>

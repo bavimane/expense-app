@@ -1,11 +1,16 @@
+import Container from "react-bootstrap/Container";
+
 import Header from "./Header";
 
 const Profile = () => {
   return (
-    <div>
+    <>
       <Header />
-      <h3>Profile info</h3>
-    </div>
+
+      <Container>
+        <h3>Profile info</h3>
+      </Container>
+    </>
   );
 };
 
