@@ -2,17 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const Home = () => {
-  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
+    const parseValue = user ? JSON.parse(user) : {};
+    if (!parseValue.id) {
       navigate("/login");
     }
-  }, [navigate, token]);
+  }, [navigate, user]);
 
   const handleClick = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     alert("successfully Logged Out");
     navigate("/login");
   };

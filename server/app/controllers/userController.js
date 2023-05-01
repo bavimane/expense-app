@@ -44,6 +44,7 @@ userController.login = (request, response) => {
         const token = jwt.sign(tokenData, "secret123", { expiresIn: "2d" });
         response.json({
           token: `Bearer ${token}`,
+          id: user._id,
         });
       } else {
         response.json({ error: "invalid email or password" });

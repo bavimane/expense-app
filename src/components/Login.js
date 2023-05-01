@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { loginAuthentication } from "../actions/authenticatonActions";
 
@@ -10,13 +10,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    if (token) {
+    const user = localStorage.getItem("user");
+    const parseValue = user ? JSON.parse(user) : {};
+    if (parseValue.id) {
       navigate("/home");
     }
-  }, [navigate, token]);
+  }, [navigate]);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -58,6 +59,9 @@ const Login = () => {
             onChange={handlePasswordChange}
           />
         </Form.Group>
+        <p>
+          Do not have account? Click <Link to="/register">here</Link>
+        </p>
         <Button variant="primary" type="submit">
           Submit
         </Button>

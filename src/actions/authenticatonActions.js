@@ -18,7 +18,11 @@ export const loginAuthentication = (loginFormData, navigate) => {
     .post("http://localhost:3066/api/user/login", loginFormData)
 
     .then((response) => {
-      localStorage.setItem("token", response.data.token);
+      const user = {
+        token: response.data.token,
+        id: response.data.id,
+      };
+      localStorage.setItem("user", JSON.stringify(user));
       alert("Successfully Logged in");
       navigate("/home");
     })

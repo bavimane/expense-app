@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
-import { registerAuthentication } from "../actions/authenticatonActions";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
-const UserRegister = (props) => {
+import { registerAuthentication } from "../actions/authenticatonActions";
+
+const UserRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const token = localStorage.getItem("token");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
+    const user = localStorage.getItem("user");
+    const parseValue = user ? JSON.parse(user) : {};
+    if (parseValue.id) {
       navigate("/home");
     }
-  }, [navigate, token]);
+  }, [navigate]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
