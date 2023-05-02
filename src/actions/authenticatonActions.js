@@ -16,7 +16,6 @@ export const registerAuthentication = (registerFormData, navigate) => {
 export const loginAuthentication = (loginFormData, navigate) => {
   return axios
     .post("http://localhost:3066/api/user/login", loginFormData)
-
     .then((response) => {
       const user = {
         token: response.data.token,
@@ -26,7 +25,6 @@ export const loginAuthentication = (loginFormData, navigate) => {
       alert("Successfully Logged in");
       navigate("/home");
     })
-
     .catch((error) => {
       alert(error);
     });

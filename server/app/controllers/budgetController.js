@@ -22,7 +22,7 @@ budgetController.create = (request, response) => {
       response.json(budget);
     })
     .catch((error) => {
-      response.json(error.message);
+      response.status(400).json(error.message);
     });
 };
 

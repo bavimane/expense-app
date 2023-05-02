@@ -2,7 +2,16 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const authenticateUser = (request, response, next) => {
-  const token = request.header("Authorization").split(" ")[1];
+  const authHeader = request.header("Authorization");
+
+  if (!authHeader) {
+    response.status(401).json({
+      message: "No Authorization",
+    });
+    return;
+  }
+
+  const token = authHeader.split(" ")[1];
   let tokenData;
   try {
     tokenData = jwt.verify(token, "secret123");
@@ -12,10 +21,10 @@ const authenticateUser = (request, response, next) => {
         next();
       })
       .catch((error) => {
-        response.json(error.message);
+        response.status(400).json(error.message);
       });
   } catch (error) {
-    response.json(error.message);
+    response.status(400).json(error.message);
   }
 };
 
