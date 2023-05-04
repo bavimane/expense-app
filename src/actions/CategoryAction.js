@@ -1,36 +1,13 @@
 import axios from "axios";
 
-export const addBudget = (budget) => {
+export const category = (category) => {
   return {
-    type: "ADD_BUDGET",
-    payload: budget,
+    type: "ADD_CATEGORY",
+    payload: category,
   };
 };
 
-export const asyncAddBudget = (budgetFormData) => {
-  const user = localStorage.getItem("user");
-  const parsedValue = user ? JSON.parse(user) : {};
-  const token = parsedValue.token;
-
-  const headers = {
-    headers: {
-      Authorization: token,
-    },
-  };
-
-  return (dispatch) => {
-    axios
-      .post("http://localhost:3066/api/budget", budgetFormData, headers)
-      .then((response) => {
-        dispatch(addBudget(response.data));
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
-};
-
-export const asyncListBudget = () => {
+export const asyncAddCategories = (categoryFormData) => {
   const user = localStorage.getItem("user");
   const parsedValue = JSON.parse(user);
   const token = parsedValue.token;
@@ -43,9 +20,9 @@ export const asyncListBudget = () => {
 
   return (dispatch) => {
     axios
-      .get("http://localhost:3066/api/budget", headers)
+      .post("http://localhost:3066/api/categories", categoryFormData, headers)
       .then((response) => {
-        dispatch(addBudget(response.data));
+        dispatch(category(response.data));
       })
       .catch((error) => {
         alert(error);
@@ -53,7 +30,7 @@ export const asyncListBudget = () => {
   };
 };
 
-export const asyncUpdatedBudget = (budgetFormData) => {
+export const asyncCategoryList = () => {
   const user = localStorage.getItem("user");
   const parsedValue = JSON.parse(user);
   const token = parsedValue.token;
@@ -64,15 +41,37 @@ export const asyncUpdatedBudget = (budgetFormData) => {
     },
   };
 
+  return (dispatch) => {
+    axios
+      .get("http://localhost:3066/api/categories", headers)
+      .then((response) => {
+        dispatch(category(response.data));
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+};
+
+export const asyncCategoryUpdate = (categoryFormData) => {
+  const user = localStorage.getItem("user");
+  const parsedValue = JSON.parse(user);
+  const token = parsedValue.token;
+
+  const headers = {
+    headers: {
+      Authorization: token,
+    },
+  };
   return (dispatch) => {
     axios
       .put(
-        `http://localhost:3066/api/budget/update/${parsedValue.id}`,
-        budgetFormData,
+        `http://localhost:3066/api/categories/update/${parsedValue.id}`,
+        categoryFormData,
         headers
       )
       .then((response) => {
-        dispatch(addBudget(response.data));
+        dispatch(category(response.data));
       })
       .catch((error) => {
         alert(error);

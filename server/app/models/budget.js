@@ -6,10 +6,6 @@ const budgetSchema = new Schema({
     type: Number,
     required: true,
   },
-  userId: {
-    type: String,
-    required: true,
-  },
 });
 
 const Budget = mongoose.model("Budget", budgetSchema);

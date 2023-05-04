@@ -3,9 +3,7 @@ const initialBudget = 0;
 const budgetReducer = (state = initialBudget, action) => {
   switch (action.type) {
     case "ADD_BUDGET": {
-      return {
-        ...action.payload,
-      };
+      return action.payload;
     }
 
     default: {

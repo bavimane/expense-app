@@ -19,7 +19,7 @@ function Header() {
 
   return (
     <>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="black" variant="dark">
         <Container>
           <Navbar.Brand>Expense App</Navbar.Brand>
           <Nav className="me-auto">

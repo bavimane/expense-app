@@ -1,14 +1,19 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { asyncListBudget, asyncUpdatedBudget } from "../actions/BudgetAction";
 
-import { asyncAddBudget } from "../actions/BudgetAction";
 import Header from "./Header";
+import Catagories from "./Catagories";
 
 const Settings = () => {
   const [budget, setBudget] = useState(0);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncListBudget());
+  }, [dispatch]);
 
   const budgetValue = useSelector((state) => {
     return state.budget;
@@ -18,12 +23,11 @@ const Settings = () => {
     setBudget(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (type) => {
     const budgetFormData = {
       amount: budget,
     };
-    dispatch(asyncAddBudget(budgetFormData));
+    dispatch(asyncUpdatedBudget(budgetFormData));
   };
 
   return (
@@ -31,13 +35,12 @@ const Settings = () => {
       <Header />
 
       <Container>
-        <h3>BUDGET - {budget}</h3>
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={budget} onChange={handleBudgetChange} />
-          <input type="submit" value="Add" />
-        </form>
-        <h2>{budgetValue.amount}</h2>
+        <h3>BUDGET - {budgetValue.amount}</h3>
+        <input type="text" value={budget} onChange={handleBudgetChange} />
+        <button onClick={handleSubmit}>Update</button>
       </Container>
+
+      <Catagories />
     </>
   );
 };

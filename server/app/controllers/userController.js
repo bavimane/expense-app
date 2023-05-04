@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Budget = require("../models/budget");
+const Catagory = require("../models/catagory");
 
 const userController = {};
 
@@ -21,6 +23,17 @@ userController.register = (request, response) => {
   user
     .save()
     .then((user) => {
+      const budget = new Budget({
+        _id: user._id,
+        amount: 0,
+      });
+      budget.save();
+
+      const category = new Catagory({
+        _id: user._id,
+        name: [],
+      });
+      category.save();
       response.json(user);
     })
     .catch((error) => {

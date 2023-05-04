@@ -4,11 +4,7 @@ const Schema = mongoose.Schema;
 
 const catagorySchema = new Schema({
   name: {
-    type: String,
-    required: true,
-  },
-  userId: {
-    type: String,
+    type: Array,
     required: true,
   },
 });

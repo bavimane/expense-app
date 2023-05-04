@@ -3,9 +3,9 @@ const Budget = require("../models/budget");
 const budgetController = {};
 
 budgetController.show = (request, response) => {
-  Budget.findOne({ userId: request.user._id })
+  Budget.findOne({ _id: request.user._id })
     .then((budget) => {
-      response.json(budget);
+      response.json(budget || { amount: 0 });
     })
     .catch((error) => {
       response.json(error.message);
@@ -14,7 +14,7 @@ budgetController.show = (request, response) => {
 
 budgetController.create = (request, response) => {
   const body = request.body;
-  body.userId = request.user._id;
+  body._id = request.user._id;
   const budget = new Budget(body);
   budget
     .save()
@@ -40,7 +40,10 @@ budgetController.destroy = (request, response) => {
 budgetController.update = (request, response) => {
   const id = request.params.id;
   const body = request.body;
-  Budget.findByIdAndUpdate(id, body, { new: true, runValidators: true })
+  Budget.findByIdAndUpdate({ _id: id }, body, {
+    new: true,
+    runValidators: true,
+  })
     .then((budget) => {
       response.json(budget);
     })
