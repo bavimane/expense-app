@@ -33,7 +33,10 @@ userController.register = (request, response) => {
         _id: user._id,
         name: [],
       });
-      category.save();
+      category.save().then(
+        () => console.log("SUCCESS"),
+        (e) => console.log("ERR", e)
+      );
       response.json(user);
     })
     .catch((error) => {

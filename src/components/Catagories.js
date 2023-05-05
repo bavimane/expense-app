@@ -26,11 +26,12 @@ const Catagories = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const categoryFormData = {
-      name: [categories],
+      name: [categories, ...categoryName],
     };
     dispatch(asyncCategoryUpdate(categoryFormData));
+    setCategories([]);
   };
-
+  console.log(categoryName);
   return (
     <div>
       <Container>
@@ -43,9 +44,15 @@ const Catagories = () => {
           />
           <input type="submit" value="Add" />
         </form>
-        {categoryName.map((category) => {
-          return <li>{category}</li>;
-        })}
+        <ul>
+          {categoryName.map((category) => {
+            return (
+              <li>
+                {category} <button>x</button>
+              </li>
+            );
+          })}
+        </ul>
       </Container>
     </div>
   );
