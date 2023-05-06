@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import {
-  asyncCategoryList,
-  asyncCategoryUpdate,
-} from "../actions/CategoryAction";
+import { asyncCategoryUpdate } from "../actions/CategoryAction";
 import { useSelector, useDispatch } from "react-redux";
 
 const Catagories = () => {
@@ -12,7 +9,7 @@ const Catagories = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncCategoryList());
+    dispatch(asyncCategoryUpdate());
   }, [dispatch]);
 
   const handleCategoryChange = (e) => {
@@ -31,7 +28,18 @@ const Catagories = () => {
     dispatch(asyncCategoryUpdate(categoryFormData));
     setCategories([]);
   };
-  console.log(categoryName);
+
+  const handleRemove = (removeItem) => {
+    const removeCategory = categoryName.filter((category) => {
+      return category !== removeItem;
+    });
+    dispatch(
+      asyncCategoryUpdate({
+        name: removeCategory,
+      })
+    );
+  };
+
   return (
     <div>
       <Container>
@@ -45,10 +53,17 @@ const Catagories = () => {
           <input type="submit" value="Add" />
         </form>
         <ul>
-          {categoryName.map((category) => {
+          {categoryName.map((category, id) => {
             return (
-              <li>
-                {category} <button>x</button>
+              <li key={id}>
+                {category}
+                <button
+                  onClick={() => {
+                    handleRemove(category);
+                  }}
+                >
+                  x
+                </button>
               </li>
             );
           })}

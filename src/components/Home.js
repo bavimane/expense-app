@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
-
+import Expense from "./Expense";
 import Header from "./Header";
 
 const Home = () => {
@@ -15,12 +15,15 @@ const Home = () => {
     }
   }, [navigate, user]);
 
+  const handleExpense = () => {};
+
   return (
     <>
       <Header />
 
       <Container>
-        <h3>Home</h3>
+        <Expense />
+        <button onClick={handleExpense}>Add</button>
       </Container>
     </>
   );

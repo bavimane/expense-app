@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const category = (category) => {
+export const setCategory = (category) => {
   return {
     type: "ADD_CATEGORY",
     payload: category,
@@ -22,7 +22,7 @@ export const asyncAddCategories = (categoryFormData) => {
     axios
       .post("http://localhost:3066/api/categories", categoryFormData, headers)
       .then((response) => {
-        dispatch(category(response.data));
+        dispatch(setCategory(response.data));
       })
       .catch((error) => {
         alert(error);
@@ -45,7 +45,7 @@ export const asyncCategoryList = () => {
     axios
       .get("http://localhost:3066/api/categories", headers)
       .then((response) => {
-        dispatch(category(response.data));
+        dispatch(setCategory(response.data));
       })
       .catch((error) => {
         alert(error);
@@ -71,7 +71,7 @@ export const asyncCategoryUpdate = (categoryFormData) => {
         headers
       )
       .then((response) => {
-        dispatch(category(response.data));
+        dispatch(setCategory(response.data));
       })
       .catch((error) => {
         alert(error);
