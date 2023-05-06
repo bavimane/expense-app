@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncListBudget, asyncUpdatedBudget } from "../actions/BudgetAction";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 import Header from "./Header";
 import Catagories from "./Catagories";
@@ -36,8 +38,21 @@ const Settings = () => {
 
       <Container>
         <h3>BUDGET - {budgetValue.amount}</h3>
-        <input type="text" value={budget} onChange={handleBudgetChange} />
-        <button onClick={handleSubmit}>Update</button>
+        <Form>
+          <Form.Group className="mb-3" controlId="password.id">
+            <Form.Control
+              type="number"
+              placeholder="Enter your budget"
+              value={budget}
+              onChange={handleBudgetChange}
+              required
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Update
+          </Button>
+        </Form>
       </Container>
 
       <Catagories />
