@@ -1,7 +1,10 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { asyncAddExpense } from "../actions/ExpenseAction";
+import { asyncCategoryList } from "../actions/CategoryAction";
 
 const Expense = () => {
   const expenseDate = () => {
@@ -17,6 +20,16 @@ const Expense = () => {
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(expenseDate);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncCategoryList());
+  }, [dispatch]);
+
+  const categoryList = useSelector((state) => {
+    return state.category;
+  });
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -36,6 +49,13 @@ const Expense = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const expenseFormData = {
+      name: name,
+      amount: amount,
+      description: description,
+      date: date,
+    };
+    dispatch(asyncAddExpense(expenseFormData));
   };
 
   return (
@@ -79,12 +99,20 @@ const Expense = () => {
             <Form.Label>Date</Form.Label>
             <Form.Control
               type="textarea"
-              placeholder="writr the description"
               value={date}
               onChange={handleDateChange}
               required
             />
           </Form.Group>
+
+          <Form.Select aria-label="Default select example">
+            <option>select category</option>
+            {categoryList.map((item, id) => (
+              <option value={item} key={id}>
+                {item}
+              </option>
+            ))}
+          </Form.Select>
 
           <Button variant="primary" type="submit">
             Add

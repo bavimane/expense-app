@@ -11,3 +11,8 @@
 a {
   text-decoration: none;
 }
+
+.budget-section {
+  width: 28%;
+  margin: 1;
+}

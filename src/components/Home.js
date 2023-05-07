@@ -15,15 +15,12 @@ const Home = () => {
     }
   }, [navigate, user]);
 
-  const handleExpense = () => {};
-
   return (
     <>
       <Header />
 
       <Container>
         <Expense />
-        <button onClick={handleExpense}>Add</button>
       </Container>
     </>
   );

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
 import { asyncCategoryUpdate } from "../actions/CategoryAction";
 import { useSelector, useDispatch } from "react-redux";
+
+//Styles
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
 
 const Catagories = () => {
   const [categories, setCategories] = useState([]);
@@ -44,22 +47,29 @@ const Catagories = () => {
 
   return (
     <div>
-      <Container>
+      <Container className="category-section">
         <h3>Add Categories</h3>
 
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="password.id">
-            <Form.Control
-              type="text"
-              placeholder="Enter your categories"
-              value={categories}
-              onChange={handleCategoryChange}
-              required
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Update
-          </Button>
+          <Card style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>Add Categories</Card.Title>
+
+              <Form.Group className="mb-3" controlId="password.id">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your categories"
+                  value={categories}
+                  onChange={handleCategoryChange}
+                  required
+                />
+              </Form.Group>
+
+              <Button variant="primary" onClick={handleSubmit}>
+                Update
+              </Button>
+            </Card.Body>
+          </Card>
         </Form>
 
         <ul>

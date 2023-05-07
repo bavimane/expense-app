@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { asyncListBudget, asyncUpdatedBudget } from "../actions/BudgetAction";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
 
 import Header from "./Header";
 import Catagories from "./Catagories";
@@ -34,28 +35,36 @@ const Settings = () => {
 
   return (
     <>
-      <Header />
+      <>
+        <Header />
+      </>
+      <div className="budget-section">
+        <Container>
+          <Form>
+            <Card style={{ width: "18rem" }}>
+              <Card.Body>
+                <Card.Title>Budget - {budgetValue.amount}</Card.Title>
 
-      <Container>
-        <h3>BUDGET - {budgetValue.amount}</h3>
-        <Form>
-          <Form.Group className="mb-3" controlId="password.id">
-            <Form.Control
-              type="number"
-              placeholder="Enter your budget"
-              value={budget}
-              onChange={handleBudgetChange}
-              required
-            />
-          </Form.Group>
+                <Form.Group className="mb-3" controlId="password.id">
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter your budget"
+                    value={budget}
+                    onChange={handleBudgetChange}
+                    required
+                  />
+                </Form.Group>
 
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Update
-          </Button>
-        </Form>
-      </Container>
+                <Button variant="primary" onClick={handleSubmit}>
+                  Update
+                </Button>
+              </Card.Body>
+            </Card>
+          </Form>
+        </Container>
 
-      <Catagories />
+        <Catagories className="category-section" />
+      </div>
     </>
   );
 };

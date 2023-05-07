@@ -8,6 +8,10 @@ const expenseSchema = new Schema({
     required: true,
   },
   amount: {
+    type: Number,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },
