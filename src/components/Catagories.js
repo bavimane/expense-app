@@ -46,12 +46,12 @@ const Catagories = () => {
   };
 
   return (
-    <div>
+    <>
       <Container className="category-section">
         <h3>Add Categories</h3>
 
         <Form onSubmit={handleSubmit}>
-          <Card style={{ width: "18rem" }}>
+          <Card>
             <Card.Body>
               <Card.Title>Add Categories</Card.Title>
 
@@ -75,8 +75,8 @@ const Catagories = () => {
         <ul>
           {categoryName.map((category, id) => {
             return (
-              <li key={id}>
-                {category}
+              <li key={id} className="category-list">
+                <p>{category}</p>
 
                 <Button
                   variant="danger"
@@ -91,7 +91,7 @@ const Catagories = () => {
           })}
         </ul>
       </Container>
-    </div>
+    </>
   );
 };
 

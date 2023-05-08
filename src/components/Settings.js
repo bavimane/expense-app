@@ -6,6 +6,8 @@ import { asyncListBudget, asyncUpdatedBudget } from "../actions/BudgetAction";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import Header from "./Header";
 import Catagories from "./Catagories";
@@ -40,30 +42,37 @@ const Settings = () => {
       </>
       <div className="budget-section">
         <Container>
-          <Form>
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Budget - {budgetValue.amount}</Card.Title>
+          <Row>
+            <Col>
+              <h3>Budget</h3>
+              <Form>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>Total - {budgetValue.amount}</Card.Title>
 
-                <Form.Group className="mb-3" controlId="password.id">
-                  <Form.Control
-                    type="number"
-                    placeholder="Enter your budget"
-                    value={budget}
-                    onChange={handleBudgetChange}
-                    required
-                  />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="password.id">
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter your budget"
+                        value={budget}
+                        onChange={handleBudgetChange}
+                        required
+                      />
+                    </Form.Group>
 
-                <Button variant="primary" onClick={handleSubmit}>
-                  Update
-                </Button>
-              </Card.Body>
-            </Card>
-          </Form>
+                    <Button variant="primary" onClick={handleSubmit}>
+                      Update
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Form>
+            </Col>
+
+            <Col>
+              <Catagories className="category-section" />
+            </Col>
+          </Row>
         </Container>
-
-        <Catagories className="category-section" />
       </div>
     </>
   );

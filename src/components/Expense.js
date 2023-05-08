@@ -5,14 +5,17 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncAddExpense } from "../actions/ExpenseAction";
 import { asyncCategoryList } from "../actions/CategoryAction";
+import { useNavigate } from "react-router-dom";
 
 const Expense = () => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [expenseDate, setExpenseDate] = useState("");
+  const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(asyncCategoryList());
@@ -38,6 +41,10 @@ const Expense = () => {
     setDescription(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,9 +58,16 @@ const Expense = () => {
       description: description,
       expenseDate: expenseDate,
       userId: id,
+      categoryName: category,
     };
-
+    console.log(expenseFormData);
     dispatch(asyncAddExpense(expenseFormData));
+    navigate("/home");
+
+    setName("");
+    setAmount(0);
+    setDescription("");
+    setExpenseDate("");
   };
 
   return (
@@ -103,7 +117,10 @@ const Expense = () => {
             />
           </Form.Group>
 
-          <Form.Select aria-label="Default select example">
+          <Form.Select
+            aria-label="Category select"
+            onChange={handleCategoryChange}
+          >
             <option>select category</option>
             {categoryList.map((item, id) => (
               <option key={id}>{item}</option>

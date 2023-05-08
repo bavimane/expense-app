@@ -12,7 +12,7 @@ a {
   text-decoration: none;
 }
 
-.budget-section {
-  width: 28%;
-  margin: 1;
+.category-list {
+  display: grid;
+  grid-template-columns: 50fr auto;
 }

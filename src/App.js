@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Settings from "./components/Settings";
 import Profile from "./components/profile";
 import AboutUs from "./components/AboutUs";
+import AddExpense from "./components/AddExpense";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/view-profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/add-expense" element={<AddExpense />} />
         {/* Default route */}
         <Route path="*" element={<Navigate to="/login" replace={true} />} />
       </Routes>
