@@ -7,19 +7,10 @@ import { asyncAddExpense } from "../actions/ExpenseAction";
 import { asyncCategoryList } from "../actions/CategoryAction";
 
 const Expense = () => {
-  const expenseDate = () => {
-    const date = new Date();
-    const currentDay = String(date.getDate()).padStart(2, "0");
-    const currentMonth = String(date.getMonth() + 1).padStart(2, "0");
-    const currentYear = date.getFullYear();
-    const currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-    return currentDate;
-  };
-
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(expenseDate);
+  const [expenseDate, setExpenseDate] = useState("");
 
   const dispatch = useDispatch();
 
@@ -31,6 +22,10 @@ const Expense = () => {
     return state.category;
   });
 
+  const handleDateChange = (e) => {
+    setExpenseDate(e.target.value);
+  };
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -39,22 +34,25 @@ const Expense = () => {
     setAmount(e.target.value);
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const user = localStorage.getItem("user");
+    const parsedValue = JSON.parse(user);
+    const id = parsedValue.id;
+
     const expenseFormData = {
       name: name,
       amount: amount,
       description: description,
-      date: date,
+      expenseDate: expenseDate,
+      userId: id,
     };
+
     dispatch(asyncAddExpense(expenseFormData));
   };
 
@@ -66,7 +64,7 @@ const Expense = () => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter expese name"
+              placeholder="Enter expense name"
               value={name}
               onChange={handleNameChange}
               required
@@ -78,8 +76,8 @@ const Expense = () => {
             <Form.Control
               type="number"
               placeholder="Enter the amount"
-              value={description}
-              onChange={handleDescriptionChange}
+              value={amount}
+              onChange={handleAmountChange}
               required
             />
           </Form.Group>
@@ -88,9 +86,9 @@ const Expense = () => {
             <Form.Label>Description</Form.Label>
             <Form.Control
               type="textarea"
-              placeholder="writr the description"
-              value={amount}
-              onChange={handleAmountChange}
+              placeholder="description...."
+              value={description}
+              onChange={handleDescriptionChange}
               required
             />
           </Form.Group>
@@ -98,8 +96,8 @@ const Expense = () => {
           <Form.Group className="mb-3" controlId="name.id">
             <Form.Label>Date</Form.Label>
             <Form.Control
-              type="textarea"
-              value={date}
+              type="date"
+              value={expenseDate}
               onChange={handleDateChange}
               required
             />
@@ -108,9 +106,7 @@ const Expense = () => {
           <Form.Select aria-label="Default select example">
             <option>select category</option>
             {categoryList.map((item, id) => (
-              <option value={item} key={id}>
-                {item}
-              </option>
+              <option key={id}>{item}</option>
             ))}
           </Form.Select>
 

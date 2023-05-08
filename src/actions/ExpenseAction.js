@@ -8,6 +8,8 @@ export const addExpense = (expense) => {
 };
 
 export const asyncAddExpense = (expenseFormData) => {
+  console.log(expenseFormData);
+
   const user = localStorage.getItem("user");
   const parsedValue = JSON.parse(user);
   const token = parsedValue.token;
@@ -22,7 +24,7 @@ export const asyncAddExpense = (expenseFormData) => {
     axios
       .post("http://localhost:3066/api/expense", expenseFormData, headers)
       .then((response) => {
-        console.log(response.data);
+        dispatch(addExpense(response.data));
       })
       .catch((error) => {
         alert(error);
