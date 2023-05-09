@@ -69,9 +69,14 @@ const Expense = () => {
     setExpenseDate("");
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <Container>
+        <h3>Add Expense</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="name.id">
             <Form.Label>Name</Form.Label>
@@ -125,10 +130,14 @@ const Expense = () => {
               <option key={id}>{item}</option>
             ))}
           </Form.Select>
-
-          <Button variant="dark" type="submit">
-            Add
-          </Button>
+          <div className="add-exp-btn-wrapper">
+            <Button variant="dark" type="submit" className="add-btn">
+              Add
+            </Button>
+            <Button variant="outline-dark" onClick={handleGoBack}>
+              Cancel
+            </Button>
+          </div>
         </Form>
       </Container>
     </>

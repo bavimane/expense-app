@@ -16,3 +16,10 @@ a {
   display: grid;
   grid-template-columns: 20fr 3fr 40fr;
 }
+
+.add-exp-btn-wrapper {
+  margin-top: 20px;
+}
+.add-btn {
+  margin-right: 10px;
+}
