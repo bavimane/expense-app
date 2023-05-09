@@ -14,5 +14,5 @@ a {
 
 .category-list {
   display: grid;
-  grid-template-columns: 50fr auto;
+  grid-template-columns: 20fr 3fr 40fr;
 }

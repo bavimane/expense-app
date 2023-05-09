@@ -48,17 +48,16 @@ const Catagories = () => {
   return (
     <>
       <Container className="category-section">
-        <h3>Add Categories</h3>
+        <h3> Categories</h3>
 
         <Form onSubmit={handleSubmit}>
           <Card>
             <Card.Body>
-              <Card.Title>Add Categories</Card.Title>
+              <Card.Title>Enter your category</Card.Title>
 
               <Form.Group className="mb-3" controlId="password.id">
                 <Form.Control
                   type="text"
-                  placeholder="Enter your categories"
                   value={categories}
                   onChange={handleCategoryChange}
                   required
@@ -66,11 +65,13 @@ const Catagories = () => {
               </Form.Group>
 
               <Button variant="dark" onClick={handleSubmit}>
-                Update
+                Add
               </Button>
             </Card.Body>
           </Card>
         </Form>
+
+        <h5>Categories List</h5>
 
         <ul>
           {categoryName.map((category, id) => {
