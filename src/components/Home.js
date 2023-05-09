@@ -25,7 +25,11 @@ const Home = () => {
       <Header />
 
       <Container>
-        <Button variant="dark" onClick={handleAddExpense}>
+        <Button
+          variant="dark"
+          onClick={handleAddExpense}
+          className="exp-btn-ctrl"
+        >
           Add Expense
         </Button>
         <ExpenseTable />

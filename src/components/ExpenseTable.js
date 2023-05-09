@@ -19,12 +19,14 @@ const ExpenseTable = () => {
     const deletedItem = expenseTable.find((item) => {
       return item._id === id;
     });
-
+    console.log(deletedItem);
     dispatch(asyncDeleteExpense(deletedItem._id));
   };
 
+  const handleEditChange = (id) => {};
+
   return (
-    <div>
+    <div className="table-ctrl">
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
@@ -59,7 +61,14 @@ const ExpenseTable = () => {
                   <Button variant="dark">Invoice</Button>
                 </td>
                 <td>
-                  <Button variant="dark">Edit</Button>
+                  <Button
+                    variant="dark"
+                    onClick={() => {
+                      handleEditChange(item._id);
+                    }}
+                  >
+                    Edit
+                  </Button>
                 </td>
               </tr>
             );
