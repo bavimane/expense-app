@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Header from "./Header";
 import ExpenseTable from "./ExpenseTable";
+import { Button } from "react-bootstrap";
 
 const Home = () => {
   const user = localStorage.getItem("user");
@@ -24,7 +25,9 @@ const Home = () => {
       <Header />
 
       <Container>
-        <button onClick={handleAddExpense}>Add Expense</button>
+        <Button variant="dark" onClick={handleAddExpense}>
+          Add Expense
+        </Button>
         <ExpenseTable />
       </Container>
     </>

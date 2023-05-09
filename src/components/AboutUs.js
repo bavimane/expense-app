@@ -5,7 +5,11 @@ const AboutUs = () => {
     <>
       <Header />
       <Container>
-        <p>About Us</p>
+        <h4>
+          It helps to track users spending by category and verify purchases for
+          authorized personal purposes.It thoroughly works to maintain user's
+          monthly expenses
+        </h4>
       </Container>
     </>
   );

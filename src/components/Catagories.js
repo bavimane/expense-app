@@ -65,7 +65,7 @@ const Catagories = () => {
                 />
               </Form.Group>
 
-              <Button variant="primary" onClick={handleSubmit}>
+              <Button variant="dark" onClick={handleSubmit}>
                 Update
               </Button>
             </Card.Body>

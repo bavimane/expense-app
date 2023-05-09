@@ -60,7 +60,6 @@ const Expense = () => {
       userId: id,
       categoryName: category,
     };
-    console.log(expenseFormData);
     dispatch(asyncAddExpense(expenseFormData));
     navigate("/home");
 
@@ -127,7 +126,7 @@ const Expense = () => {
             ))}
           </Form.Select>
 
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Add
           </Button>
         </Form>
