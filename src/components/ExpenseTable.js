@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { asyncExpenseList } from "../actions/ExpenseAction";
+import { asyncDeleteExpense, asyncExpenseList } from "../actions/ExpenseAction";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 const ExpenseTable = () => {
   const dispatch = useDispatch();
@@ -13,21 +15,58 @@ const ExpenseTable = () => {
     return state.expense;
   });
 
-  console.log(expenseTable);
+  const handleDeleteChange = (id) => {
+    const deletedItem = expenseTable.find((item) => {
+      return item._id === id;
+    });
+
+    dispatch(asyncDeleteExpense(deletedItem._id));
+  };
 
   return (
-    <>
-      <table border="1">
+    <div>
+      <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Date</th>
+            <th>CATEGORY</th>
+            <th>NAME</th>
+            <th>DATE</th>
+            <th>AMOUNT</th>
+            <th>Delete</th>
+            <th>Invoice</th>
+            <th>Edit</th>
           </tr>
         </thead>
-        <tbody></tbody>
-      </table>
-    </>
+        <tbody>
+          {expenseTable.map((item, id) => {
+            return (
+              <tr key={id}>
+                <td>{item.categoryName}</td>
+                <td>{item.name}</td>
+                <td>{item.expenseDate}</td>
+                <td>{item.amount}</td>
+                <td>
+                  <Button
+                    variant="dark"
+                    onClick={() => {
+                      handleDeleteChange(item._id);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </td>
+                <td>
+                  <Button variant="dark">Invoice</Button>
+                </td>
+                <td>
+                  <Button variant="dark">Edit</Button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </div>
   );
 };
 

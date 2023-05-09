@@ -28,7 +28,7 @@ expenseController.create = (request, response) => {
 
 expenseController.destroy = (request, response) => {
   const id = request.params.id;
-  Expense.findOneAndDelete({ _id: id, userId: request.user._id })
+  Expense.findByIdAndDelete({ _id: id })
     .then((expense) => {
       response.json(expense);
     })

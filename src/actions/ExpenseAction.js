@@ -14,6 +14,13 @@ export const listExpense = (expense) => {
   };
 };
 
+export const deleteExpense = (expense) => {
+  return {
+    type: "DELETE_EXPENSE",
+    payload: expense,
+  };
+};
+
 export const asyncAddExpense = (expenseFormData) => {
   const user = localStorage.getItem("user");
   const parsedValue = JSON.parse(user);
@@ -29,10 +36,9 @@ export const asyncAddExpense = (expenseFormData) => {
     axios
       .post("http://localhost:3066/api/expense", expenseFormData, headers)
       .then((response) => {
-        console.log(response.data);
-
-        dispatch(listExpense(response.data));
+        dispatch(addExpense(response.data));
       })
+
       .catch((error) => {
         alert(error);
       });
@@ -58,6 +64,29 @@ export const asyncExpenseList = () => {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+};
+
+export const asyncDeleteExpense = (id) => {
+  const user = localStorage.getItem("user");
+  const parsedValue = JSON.parse(user);
+  const token = parsedValue.token;
+
+  const headers = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return (dispatch) => {
+    axios
+      .delete(`http://localhost:3066/api/expense/delete/${id}`, headers)
+      .then(() => {
+        dispatch(asyncExpenseList());
+      })
+      .catch((error) => {
+        alert(error);
       });
   };
 };

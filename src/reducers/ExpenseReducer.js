@@ -3,7 +3,10 @@ const initilaExpenseValue = [];
 const expenseReducer = (state = initilaExpenseValue, action) => {
   switch (action.type) {
     case "LIST_EXPENSE": {
-      return [...state, ...action.payload];
+      return action.payload;
+    }
+    case "DELETE_EXPENSE": {
+      return action.payload;
     }
     default: {
       return state;
