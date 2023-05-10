@@ -71,7 +71,7 @@ const Catagories = () => {
           </Card>
         </Form>
 
-        <h5>Categories List</h5>
+        <h5 style={{ marginTop: "10px" }}>Categories List</h5>
 
         <ul>
           {categoryName.map((category, id) => {
@@ -80,12 +80,12 @@ const Catagories = () => {
                 <p>{category}</p>
 
                 <Button
-                  variant="danger"
+                  variant="link"
                   onClick={() => {
                     handleRemove(category);
                   }}
                 >
-                  x
+                  Delete
                 </Button>
               </li>
             );

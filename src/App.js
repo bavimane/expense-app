@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Settings from "./components/Settings";
 import Profile from "./components/profile";
-import AboutUs from "./components/AboutUs";
+import About from "./components/About";
 import AddExpense from "./components/AddExpense";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/view-profile" element={<Profile />} />
-        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/about" element={<About />} />
         <Route path="/add-expense" element={<AddExpense />} />
         {/* Default route */}
         <Route path="*" element={<Navigate to="/login" replace={true} />} />

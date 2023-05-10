@@ -35,8 +35,8 @@ function Header() {
               </NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
-            <Link className="nav-link" to="/aboutus">
-              Aboutus
+            <Link className="nav-link" to="/about">
+              About
             </Link>
           </Nav>
         </Container>

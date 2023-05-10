@@ -15,6 +15,7 @@ a {
 .category-list {
   display: grid;
   grid-template-columns: 20fr 3fr 40fr;
+  align-items: baseline;
 }
 
 .add-exp-btn-wrapper {
@@ -29,5 +30,9 @@ a {
 }
 
 .table-ctrl {
+  margin-top: 20px;
+}
+
+.budget-section {
   margin-top: 20px;
 }

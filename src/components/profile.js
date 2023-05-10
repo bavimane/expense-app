@@ -7,7 +7,7 @@ const Profile = () => {
     <>
       <Header />
 
-      <Container>
+      <Container style={{ marginTop: "20px" }}>
         <h3>Profile info</h3>
       </Container>
     </>

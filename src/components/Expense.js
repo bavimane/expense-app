@@ -75,7 +75,7 @@ const Expense = () => {
 
   return (
     <>
-      <Container>
+      <Container style={{ marginTop: "20px" }}>
         <h3>Add Expense</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="name.id">
