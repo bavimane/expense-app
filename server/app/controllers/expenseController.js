@@ -40,7 +40,10 @@ expenseController.destroy = (request, response) => {
 expenseController.update = (request, response) => {
   const id = request.params.id;
   const body = request.body;
-  Expense.findByIdAndUpdate(id, body, { new: true, runValidators: true })
+  Expense.findByIdAndUpdate({ _id: id }, body, {
+    new: true,
+    runValidators: true,
+  })
     .then((expense) => {
       response.json(expense);
     })

@@ -90,3 +90,30 @@ export const asyncDeleteExpense = (id) => {
       });
   };
 };
+
+export const asyncUpdateExpense = (expense) => {
+  const user = localStorage.getItem("user");
+  const parsedValue = JSON.parse(user);
+  const token = parsedValue.token;
+
+  const headers = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return (dispatch) => {
+    axios
+      .put(
+        `http://localhost:3066/api/expense/update/${expense._id}`,
+        expense,
+        headers
+      )
+      .then(() => {
+        dispatch(asyncExpenseList());
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+};
