@@ -1,27 +1,44 @@
 import { useSelector, useDispatch } from "react-redux";
-import { asyncListBudget } from "../actions/BudgetAction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React, { memo } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
+import { asyncListBudget } from "../actions/BudgetAction";
+
 const BudgetChart = () => {
   const dispatch = useDispatch();
+  const [usedAmount, setUsedAmount] = useState(0);
+  const [remainingAmount, setRemainingAmount] = useState(0);
 
   useEffect(() => {
     dispatch(asyncListBudget());
   }, [dispatch]);
 
-  const budget = useSelector((state) => {
-    return state.budget;
+  const budgetAmount = useSelector((state) => {
+    return state.budget.amount;
   });
-  console.log(budget);
+
+  const expenseData = useSelector((state) => {
+    return state.expense;
+  });
+
+  useEffect(() => {
+    const totalUsedAmount = expenseData.reduce(
+      (sum, item) => (sum += item.amount),
+      0
+    );
+    const totalRemainingAmount = budgetAmount - totalUsedAmount;
+
+    setUsedAmount(totalUsedAmount);
+    setRemainingAmount(totalRemainingAmount);
+  }, [budgetAmount, expenseData]);
 
   const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
+    { name: "Used", value: usedAmount },
+    { name: "Un used", value: remainingAmount },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#0088FE", "#00C49F"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -73,6 +90,8 @@ const BudgetChart = () => {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
+      <p style={{ color: "#0088FE" }}>Used Amount - {usedAmount}</p>
+      <p style={{ color: "#00C49F" }}>Remaining Amount - {remainingAmount}</p>
     </div>
   );
 };
