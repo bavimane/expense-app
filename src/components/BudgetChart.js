@@ -68,7 +68,8 @@ const BudgetChart = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: "50%" }}>
+      <h3>Budget Overview</h3>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie

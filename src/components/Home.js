@@ -26,11 +26,12 @@ const Home = () => {
   return (
     <>
       <Header />
-
-      <BudgetChart />
-      <CategoryChart />
-
       <Container>
+        <div style={{ display: "flex", marginTop: "10px" }}>
+          <BudgetChart />
+          <CategoryChart />
+        </div>
+
         <Button
           variant="dark"
           onClick={handleAddExpense}
