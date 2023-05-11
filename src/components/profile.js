@@ -1,8 +1,9 @@
-import { asyncViewProfile } from "../actions/ProfileAction";
-import Header from "./Header";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
+
+import Header from "./Header";
+import { asyncViewProfile } from "../actions/ProfileAction";
 
 const Profile = () => {
   const dispatch = useDispatch();

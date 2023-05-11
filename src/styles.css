@@ -41,3 +41,7 @@ a {
   margin-top: 20px;
   margin-left: 10px;
 }
+
+.recharts-responsive-container {
+  height: 230px !important;
+}

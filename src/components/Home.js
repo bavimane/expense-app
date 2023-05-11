@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Header from "./Header";
-import ExpenseTable from "./ExpenseTable";
 import { Button } from "react-bootstrap";
+
+import Header from "./Header";
+import Container from "react-bootstrap/Container";
+import ExpenseTable from "./ExpenseTable";
+import BudgetChart from "./BudgetChart";
+import CategoryChart from "./CategoryChart";
 
 const Home = () => {
   const user = localStorage.getItem("user");
@@ -23,6 +26,9 @@ const Home = () => {
   return (
     <>
       <Header />
+
+      <BudgetChart />
+      <CategoryChart />
 
       <Container>
         <Button

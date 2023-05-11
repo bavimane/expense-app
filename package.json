@@ -17,6 +17,8 @@
     "react-router-dom": "^6.11.0",
     "react-scripts": "5.0.1",
     "react-to-pdf": "^0.0.14",
+    "recharts": "^2.6.2",
+    "recompose": "^0.30.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
