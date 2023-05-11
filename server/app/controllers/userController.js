@@ -7,9 +7,10 @@ const Catagory = require("../models/catagory");
 const userController = {};
 
 userController.list = (request, response) => {
-  User.find()
-    .then((users) => {
-      response.json(users);
+  const userId = request.user._id;
+  User.findById({ _id: userId })
+    .then((user) => {
+      response.json(user);
     })
     .catch((error) => {
       response.json(error);

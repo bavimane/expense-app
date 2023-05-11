@@ -8,7 +8,7 @@ const { authenticateUser } = require("../app/middleware/authentication");
 
 //User API's
 
-router.get("/api/users", userController.list);
+router.get("/api/user", authenticateUser, userController.list);
 router.post("/api/user/register", userController.register);
 router.post("/api/user/login", userController.login);
 router.get("/api/user/profile", authenticateUser, userController.profile);
